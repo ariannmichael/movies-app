@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TMDBService } from '../../core/services/tmdb.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Movie } from '../../core/models/search.model';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent {
   query = '';
-  movies = signal<any[]>([]);
+  movies = signal<Movie[]>([]);
 
   constructor(private tmdbService: TMDBService) {}
 
