@@ -1,0 +1,31 @@
+<div *ngIf="isLoaded(); else loading">
+    <div class="carousel">
+        <div class="background" [style.backgroundImage]="'url(https://image.tmdb.org/t/p/original' + currentItem().backdrop_path + ')'"></div>
+      
+        <div class="content">
+          <img [src]="'https://image.tmdb.org/t/p/w300' + currentItem().poster_path" alt="Poster" />
+          <div class="info">
+            <h2>{{ currentItem().title }} ({{ currentItem().release_date.split('-')[0] }})</h2>
+            <p>{{ currentItem().overview }}</p>
+          </div>
+        </div>
+      
+        <div class="controls">
+          <button (click)="prev()">‹</button>
+          <button (click)="next()">›</button>
+        </div>
+      
+        <div class="dots">
+          <span *ngFor="let movie of movies; let i = index"
+                [class.active]="i === currentIndex()"
+                (click)="select(i)"></span>
+        </div>
+    </div>    
+</div>
+
+<ng-template #loading>
+    <div class="loading">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+</ng-template>
