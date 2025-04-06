@@ -26,7 +26,18 @@ export class TMDBService {
 
   getTrendingAll(): Observable<SearchResponse> {
     return this.http.get<SearchResponse>(`${this.baseUrl}/trending/all/day?language=en-US`, {
-      params: { api_key: this.apiKey }
+      params: { 
+        api_key: this.apiKey
+      }
+    });
+  }
+
+  getTrendingMovies(page: number = 1): Observable<SearchResponse> {
+    return this.http.get<SearchResponse>(`${this.baseUrl}/trending/all/day?language=en-US`, {
+      params: { 
+        api_key: this.apiKey,
+        page: page.toString()
+      }
     });
   }
 
@@ -36,15 +47,21 @@ export class TMDBService {
     });
   }
 
-  getPopularMovies(): Observable<SearchResponse> {
-    return this.http.get<SearchResponse>(`${this.baseUrl}/movie/popular?language=en-US`, {
-      params: { api_key: this.apiKey }
+  getPopularMovies(page: number = 1): Observable<SearchResponse> {
+    return this.http.get<SearchResponse>(`${this.baseUrl}/movie/popular`, {
+      params: { 
+        api_key: this.apiKey,
+        page: page.toString()
+      }
     });
   }
 
-  getPopularTv(): Observable<SearchResponse> {
+  getPopularTv(page: number = 1): Observable<SearchResponse> {
     return this.http.get<SearchResponse>(`${this.baseUrl}/tv/popular?language=en-US`, {
-      params: { api_key: this.apiKey }
+      params: { 
+        api_key: this.apiKey,
+        page: page.toString()
+      }
     });
   }
   

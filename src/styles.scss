@@ -53,3 +53,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
+
+.mat-paginator .mat-paginator-navigation-next .mat-icon {
+  color: white !important;
+}

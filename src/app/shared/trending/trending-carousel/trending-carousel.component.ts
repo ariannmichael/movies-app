@@ -1,6 +1,6 @@
 import { Component, Input, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MediaItem, Movie } from '../../../core/models/search.model';
+import { MediaItem } from '../../../core/models/search.model';
 
 @Component({
   selector: 'app-trending-carousel',

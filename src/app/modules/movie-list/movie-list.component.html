@@ -1,3 +1,8 @@
-<div class="card-list">
-  <app-movie-card *ngFor="let movie of movies()" [movie]="movie"></app-movie-card>
-</div>
+<app-media-list
+  [mediaItems]="movies()"
+  [totalItems]="totalMovies()"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [isLoading]="isLoading()"
+  (pageChange)="onPageChange($event)">
+</app-media-list> 

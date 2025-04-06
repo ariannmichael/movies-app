@@ -1,0 +1,24 @@
+<div class="media-list-container">
+  <div class="card-list" *ngIf="!isLoading; else loading">
+    <app-movie-card *ngFor="let item of mediaItems" [movie]="item"></app-movie-card>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <div class="paginator-wrapper">
+      <mat-paginator
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageIndex]="currentPage - 1"
+        [pageSizeOptions]="[20]"
+      (page)="pageChange.emit($event)"
+      aria-label="Select page">
+    </mat-paginator>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

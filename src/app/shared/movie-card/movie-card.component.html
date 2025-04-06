@@ -5,7 +5,7 @@
   </div>
 
   <mat-card-content>
-    <h3>{{ movie.title }}</h3>
-    <p>{{ movie.release_date | date: 'MMM dd, y' }}</p>
+    <h3>{{ (movie.title || movie.name) | truncate:25 }}</h3>
+    <p>{{ movie.release_date || movie.first_air_date | date: 'MMM dd, y' }}</p>
   </mat-card-content>
 </mat-card>

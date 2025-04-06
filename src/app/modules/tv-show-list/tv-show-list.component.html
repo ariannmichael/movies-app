@@ -1,1 +1,8 @@
-<p>tv-show-list works!</p>
+<app-media-list
+  [mediaItems]="tvShows()"
+  [totalItems]="totalTvShows()"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [isLoading]="isLoading()"
+  (pageChange)="onPageChange($event)">
+</app-media-list>
