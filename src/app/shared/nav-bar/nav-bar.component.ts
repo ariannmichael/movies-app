@@ -26,8 +26,11 @@ export class NavBarComponent {
   constructor(private router: Router) {}
 
   onSearch() {
-    console.log(this.query);
-    // this.router.navigate(['/search', this.query]);
+    if (this.query.trim()) {
+      this.router.navigate(['/search'], { 
+        queryParams: { query: this.query.trim() }
+      });
+    }
   }
 
 }

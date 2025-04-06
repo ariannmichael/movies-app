@@ -13,9 +13,23 @@ export class TMDBService {
 
   constructor(private http: HttpClient) {}
 
-  searchMovies(query: string): Observable<SearchResponse> {
+  searchMovies(query: string, page: number = 1): Observable<SearchResponse> {
     return this.http.get<SearchResponse>(`${this.baseUrl}/search/movie`, {
-      params: { api_key: this.apiKey, query }
+      params: {
+        api_key: this.apiKey,
+        query,
+        page: page.toString()
+      }
+    });
+  }
+
+  searchTVShows(query: string, page: number = 1): Observable<SearchResponse> {
+    return this.http.get<SearchResponse>(`${this.baseUrl}/search/tv`, {
+      params: {
+        api_key: this.apiKey,
+        query,
+        page: page.toString()
+      }
     });
   }
 

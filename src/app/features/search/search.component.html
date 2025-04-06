@@ -1,0 +1,15 @@
+<div class="search-container">
+  <div class="search-header">
+    <h2>Search Results for: {{searchQuery}}</h2>
+    <mat-button-toggle-group [(ngModel)]="mediaType" (change)="onMediaTypeChange()">
+      <mat-button-toggle value="movie">Movies</mat-button-toggle>
+      <mat-button-toggle value="tv">TV Shows</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <app-media-list 
+    [mediaItems]="results()" 
+    [totalItems]="totalResults()"
+    [isLoading]="isLoading()"
+    (pageChange)="onPageChange($event)">
+  </app-media-list>
+</div>

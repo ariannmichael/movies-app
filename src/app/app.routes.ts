@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './modules/home/home.component';
-import { MovieDetailsComponent } from './modules/movie-details/movie-details.component';
-import { MovieListComponent } from './modules/movie-list/movie-list.component';
-import { TvShowListComponent } from './modules/tv-show-list/tv-show-list.component';
+import { HomeComponent } from './features/home/home.component';
+import { MovieDetailsComponent } from './features/movie-details/movie-details.component';
+import { MovieListComponent } from './features/movie-list/movie-list.component';
+import { TvShowListComponent } from './features/tv-show-list/tv-show-list.component';
+import { SearchComponent } from './features/search/search.component';
 
 
 export const routes: Routes = [
@@ -10,5 +11,6 @@ export const routes: Routes = [
   { path: 'movie/:id', component: MovieDetailsComponent },
   { path: 'movies', component: MovieListComponent },
   { path: 'tv-shows', component: TvShowListComponent },
+  { path: 'search', component: SearchComponent },
   { path: '**', redirectTo: '' },
 ];
