@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MediaListComponent } from '../../shared/media-list/media-list.component';
 import { PageEvent } from '@angular/material/paginator';
 import { Movie } from '../../core/models/search.model';
-import { FilterComponent } from '../../shared/filter/filter.component';
+import { FilterComponent, FilterCriteria } from '../../shared/filter/filter.component';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class MovieListComponent {
 
   loadMovies() {
     this.isLoading.set(true);
-    this.tmdbService.getTrendingMovies(this.currentPage).subscribe({
+    this.tmdbService.getPopularMovies(this.currentPage).subscribe({
       next: (res) => {
         this.movies.set(res.results);
         this.totalMovies.set(res.total_results);
@@ -43,5 +43,21 @@ export class MovieListComponent {
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex + 1;
     this.loadMovies();
+  }
+
+  onFilterChange(filterCriteria: FilterCriteria) {
+    console.log(filterCriteria);
+    
+    this.tmdbService.discoverMovies(this.currentPage, filterCriteria).subscribe({
+      next: (res) => {
+        this.movies.set(res.results);
+        this.totalMovies.set(res.total_results);
+        this.isLoading.set(false);
+      },
+      error: (error) => {
+        console.error('Error loading movies:', error);
+        this.isLoading.set(false);
+      }
+    });
   }
 }

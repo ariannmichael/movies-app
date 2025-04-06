@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../enviroments/enviroment';
 import { SearchResponse } from '../models/search.model';
 import { DetailResponse } from '../models/detail.model';
+import { FilterCriteria } from '../../shared/filter/filter.component';
 
 @Injectable({ providedIn: 'root' })
 export class TMDBService {
@@ -48,12 +49,12 @@ export class TMDBService {
   }
 
   getPopularMovies(page: number = 1): Observable<SearchResponse> {
-    return this.http.get<SearchResponse>(`${this.baseUrl}/movie/popular`, {
-      params: { 
-        api_key: this.apiKey,
-        page: page.toString()
-      }
-    });
+    let params: any = { 
+      api_key: this.apiKey,
+      page: page.toString()
+    };
+    
+    return this.http.get<SearchResponse>(`${this.baseUrl}/movie/popular`, { params });
   }
 
   getPopularTv(page: number = 1): Observable<SearchResponse> {
@@ -63,6 +64,26 @@ export class TMDBService {
         page: page.toString()
       }
     });
+  }
+
+  discoverMovies(page: number = 1, filters: FilterCriteria): Observable<SearchResponse> {
+    let params: any = {
+      api_key: this.apiKey,
+      page: page.toString()
+    };
+
+    if (filters) {
+      if (filters.genres.length) params.with_genres = filters.genres.join(',');
+      if (filters.certifications.length) {
+        params.certification = filters.certifications.join('|');
+        params.certification_country = 'US'
+      }
+      if (filters.language) params.language = filters.language;
+      if (filters.userScore) params.vote_average_gte = filters.userScore;
+      if (filters.minUserVotes) params.vote_count_gte = filters.minUserVotes;
+    }
+
+    return this.http.get<SearchResponse>(`${this.baseUrl}/discover/movie`, { params });
   }
   
 }

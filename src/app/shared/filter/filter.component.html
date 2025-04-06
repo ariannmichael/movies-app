@@ -3,8 +3,8 @@
   <div class="filter-section">
     <h3>Genres</h3>
     <div class="genre-chips">
-      <mat-chip-listbox multiple>
-        <mat-chip-option *ngFor="let genre of genres">{{ genre }}</mat-chip-option>
+      <mat-chip-listbox multiple [(ngModel)]="selectedGenres">
+        <mat-chip-option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</mat-chip-option>
       </mat-chip-listbox>
     </div>
   </div>
@@ -13,8 +13,8 @@
   <div class="filter-section">
     <h3>Certification</h3>
     <div class="certification-chips">
-      <mat-chip-listbox multiple>
-        <mat-chip-option *ngFor="let cert of certifications">{{ cert }}</mat-chip-option>
+      <mat-chip-listbox multiple [(ngModel)]="selectedCertifications">
+        <mat-chip-option *ngFor="let cert of certifications" [value]="cert">{{ cert }}</mat-chip-option>
       </mat-chip-listbox>
     </div>
   </div>
@@ -23,7 +23,8 @@
   <div class="filter-section">
     <h3>Language <mat-icon>help</mat-icon></h3>
     <mat-form-field appearance="fill">
-      <mat-select placeholder="None Selected">
+      <mat-select placeholder="None Selected" [(ngModel)]="selectedLanguage">
+        <mat-option value="">None Selected</mat-option>
         <mat-option *ngFor="let lang of languages" [value]="lang.code">
           {{ lang.name }}
         </mat-option>
@@ -35,36 +36,31 @@
   <div class="filter-section">
     <h3>User Score</h3>
     <mat-slider min="0" max="10" step="0.1" discrete>
-      <input matSliderThumb>
+      <input matSliderThumb [(ngModel)]="userScore">
     </mat-slider>
+    <div class="slider-value">{{ userScore }}</div>
   </div>
 
   <!-- Minimum User Votes -->
   <div class="filter-section">
     <h3>Minimum User Votes</h3>
     <mat-slider min="0" max="500" step="10" discrete>
-      <input matSliderThumb>
+      <input matSliderThumb [(ngModel)]="minUserVotes">
     </mat-slider>
+    <div class="slider-value">{{ minUserVotes }}</div>
   </div>
 
   <!-- Runtime -->
   <div class="filter-section">
     <h3>Runtime</h3>
     <mat-slider min="0" max="360" step="15" discrete>
-      <input matSliderThumb>
+      <input matSliderThumb [(ngModel)]="runtime">
     </mat-slider>
-  </div>
-
-  <!-- Keywords -->
-  <div class="filter-section">
-    <h3>Keywords</h3>
-    <mat-form-field appearance="outline">
-      <input matInput placeholder="Filter by keywords...">
-    </mat-form-field>
+    <div class="slider-value">{{ runtime }} min</div>
   </div>
 
   <!-- Search Button -->
-  <button mat-flat-button color="primary" class="search-button">
+  <button mat-flat-button color="primary" class="search-button" (click)="onSearch()">
     Search
   </button>
 </div> 
