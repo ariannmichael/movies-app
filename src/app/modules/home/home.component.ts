@@ -20,14 +20,14 @@ export class HomeComponent {
   constructor(private tmdbService: TMDBService) {}
 
   ngOnInit() {
-    this.tmdbService.getTrendingMovies().subscribe(res => {      
+    this.tmdbService.getTrendingAll().subscribe(res => {      
       this.trendingMovies.set(res.results);
     });
   }
 
   search() {
     if (!this.query) return;
-    this.tmdbService.getTrendingMovies().subscribe(res => {
+    this.tmdbService.getTrendingAll().subscribe(res => {
       this.trendingMovies.set(res.results);
     });
   }

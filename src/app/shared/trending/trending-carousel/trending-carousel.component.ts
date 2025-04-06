@@ -1,6 +1,6 @@
 import { Component, Input, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Movie } from '../../../core/models/search.model';
+import { MediaItem, Movie } from '../../../core/models/search.model';
 
 @Component({
   selector: 'app-trending-carousel',
@@ -10,7 +10,7 @@ import { Movie } from '../../../core/models/search.model';
   styleUrl: './trending-carousel.component.scss'
 })
 export class TrendingCarouselComponent {
-  @Input() movies: Movie[] = [];
+  @Input() movies: MediaItem[] = [];
   currentIndex = signal(0);
   isLoaded = signal(false);
   intervalId: any;
@@ -50,5 +50,17 @@ export class TrendingCarouselComponent {
     this.currentIndex.set(index);
   }  
 
-  currentItem = computed(() => this.movies[this.currentIndex()]);
+  currentItem = computed(() => {
+    const item = this.movies[this.currentIndex()];
+    return item || this.movies[0] || {} as MediaItem;
+  });
+
+  getTitle(item: MediaItem): string {
+    return item.title || item.name || '';
+  }
+
+  getYear(item: MediaItem): string {
+    const date = item.release_date || item.first_air_date;
+    return date ? date.split('-')[0] : '';
+  }
 }

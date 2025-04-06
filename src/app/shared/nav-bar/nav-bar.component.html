@@ -4,14 +4,17 @@
       MoviesApp
     </a>
     <div class="header__items__links">
-      <a [routerLink]="[ '/' ]" class="header__items__link">
-        <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="payments"></mat-icon> -->
+      <a [routerLink]="[ '/movies' ]" class="header__items__link">
         <p>Movies</p>
       </a>
-      <a [routerLink]="[ '/' ]" class="header__items__link">
-        <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="payments"></mat-icon> -->
+      <a [routerLink]="[ '/tv-shows' ]" class="header__items__link">
         <p>TV Shows</p>
       </a>
+      <mat-form-field appearance="outline" class="header__items__search">
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-label>Search Name</mat-label>
+        <input matInput [(ngModel)]="query" (keyup.enter)="onSearch()">
+       </mat-form-field>
     </div>
   </div>
 </header>

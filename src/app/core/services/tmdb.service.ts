@@ -24,15 +24,28 @@ export class TMDBService {
     });
   }
 
-  getTrendingMovies(): Observable<SearchResponse> {
+  getTrendingAll(): Observable<SearchResponse> {
     return this.http.get<SearchResponse>(`${this.baseUrl}/trending/all/day?language=en-US`, {
       params: { api_key: this.apiKey }
     });
   }
 
-  getPopularMovies(): Observable<SearchResponse> {
-    return this.http.get<SearchResponse>(`${this.baseUrl}/all/popular`, {
+  getPopularAll(): Observable<SearchResponse> {
+    return this.http.get<SearchResponse>(`${this.baseUrl}/popular/all/day?language=en-US`, {
       params: { api_key: this.apiKey }
     });
   }
+
+  getPopularMovies(): Observable<SearchResponse> {
+    return this.http.get<SearchResponse>(`${this.baseUrl}/movie/popular?language=en-US`, {
+      params: { api_key: this.apiKey }
+    });
+  }
+
+  getPopularTv(): Observable<SearchResponse> {
+    return this.http.get<SearchResponse>(`${this.baseUrl}/tv/popular?language=en-US`, {
+      params: { api_key: this.apiKey }
+    });
+  }
+  
 }

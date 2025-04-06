@@ -9,10 +9,19 @@ export interface Movie {
     popularity: number;
     poster_path: string;
     release_date: string;
-    title: string;
+    title?: string;
     video: boolean;
     vote_average: number;
     vote_count: number;
+    name?: string;
+    first_air_date?: string;
+    origin_country?: string[];
+    original_name?: string;
+}
+
+export interface MediaItem extends Movie {
+    first_air_date?: string;
+    name?: string;
 }
 
 export interface SearchResponse {
