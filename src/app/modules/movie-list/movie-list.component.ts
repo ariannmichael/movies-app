@@ -46,8 +46,6 @@ export class MovieListComponent {
   }
 
   onFilterChange(filterCriteria: FilterCriteria) {
-    console.log(filterCriteria);
-    
     this.tmdbService.discoverMovies(this.currentPage, filterCriteria).subscribe({
       next: (res) => {
         this.movies.set(res.results);

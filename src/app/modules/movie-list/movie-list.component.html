@@ -1,6 +1,6 @@
 <div class="movie-container">
   <div class="filter-column">
-    <app-filter (filterChange)="onFilterChange($event)"></app-filter>
+    <app-filter (filterChange)="onFilterChange($event)" [mediaType]="'movie'"></app-filter>
   </div>
   <div class="list-column">
     <app-media-list

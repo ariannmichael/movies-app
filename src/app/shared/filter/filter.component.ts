@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,16 +36,17 @@ export interface FilterCriteria {
   styleUrl: './filter.component.scss'
 })
 export class FilterComponent {
+  @Input() mediaType: string = 'movie';
   @Output() filterChange = new EventEmitter<FilterCriteria>();
 
   selectedGenres: number[] = [];
   selectedCertifications: string[] = [];
   selectedLanguage: string = 'en';
-  userScore: number = 0;
+  userScore: number = 10;
   minUserVotes: number = 0;
-  runtime: number = 0;
+  runtime: number = 400;
 
-  genres: { name: string; id: number }[] = [
+  genresMovie: { name: string; id: number }[] = [
     { name: 'Action', id: 28 },
     { name: 'Adventure', id: 12 },
     { name: 'Animation', id: 16 },
@@ -67,7 +68,27 @@ export class FilterComponent {
     { name: 'Western', id: 37 }
   ];
 
-  certifications: string[] = ['NR', 'G', 'PG', 'PG-13', 'R', 'NC-17'];
+  genresTv: { name: string; id: number }[] = [
+    { name: 'Action & Adventure', id: 10759 },
+    { name: 'Animation', id: 16 },
+    { name: 'Comedy', id: 35 },
+    { name: 'Crime', id: 80 },
+    { name: 'Documentary', id: 99 },
+    { name: 'Drama', id: 18 },
+    { name: 'Family', id: 10751 },
+    { name: 'Kids', id: 10762 },
+    { name: 'Mystery', id: 9648 },
+    { name: 'News', id: 10763 },
+    { name: 'Reality', id: 10764 },
+    { name: 'Science-Fiction', id: 10765 },
+    { name: 'Soap', id: 10766 },
+    { name: 'Talk', id: 10767 },
+    { name: 'War & Politics', id: 10768 },
+    { name: 'Western', id: 10769 }
+  ];
+
+  certificationsMovie: string[] = ['NR', 'G', 'PG', 'PG-13', 'R', 'NC-17'];
+  certificationsTv: string[] = ['NR', 'TV-Y', 'TV-Y7', 'TV-G', 'TV-PG', 'TV-14', 'TV-MA'];
 
   languages = [
     { code: 'en', name: 'English' },
@@ -93,5 +114,13 @@ export class FilterComponent {
     };
     
     this.filterChange.emit(filterCriteria);
+  }
+
+  getGenres() {
+    return this.mediaType === 'movie' ? this.genresMovie : this.genresTv;
+  }
+
+  getCertifications() {
+    return this.mediaType === 'movie' ? this.certificationsMovie : this.certificationsTv;
   }
 } 

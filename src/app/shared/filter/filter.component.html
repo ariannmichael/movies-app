@@ -4,7 +4,7 @@
     <h3>Genres</h3>
     <div class="genre-chips">
       <mat-chip-listbox multiple [(ngModel)]="selectedGenres">
-        <mat-chip-option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</mat-chip-option>
+        <mat-chip-option *ngFor="let genre of getGenres()" [value]="genre.id">{{ genre.name }}</mat-chip-option>
       </mat-chip-listbox>
     </div>
   </div>
@@ -14,7 +14,7 @@
     <h3>Certification</h3>
     <div class="certification-chips">
       <mat-chip-listbox multiple [(ngModel)]="selectedCertifications">
-        <mat-chip-option *ngFor="let cert of certifications" [value]="cert">{{ cert }}</mat-chip-option>
+        <mat-chip-option *ngFor="let cert of getCertifications()" [value]="cert">{{ cert }}</mat-chip-option>
       </mat-chip-listbox>
     </div>
   </div>
@@ -53,7 +53,7 @@
   <!-- Runtime -->
   <div class="filter-section">
     <h3>Runtime</h3>
-    <mat-slider min="0" max="360" step="15" discrete>
+    <mat-slider min="0" max="400" step="15" discrete>
       <input matSliderThumb [(ngModel)]="runtime">
     </mat-slider>
     <div class="slider-value">{{ runtime }} min</div>

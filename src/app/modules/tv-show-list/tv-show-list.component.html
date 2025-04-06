@@ -1,6 +1,6 @@
 <div class="tv-show-container">
   <div class="filter-column">
-    <app-filter></app-filter>
+    <app-filter (filterChange)="onFilterChange($event)" [mediaType]="'tv'"></app-filter>
   </div>
   <div class="list-column">
     <app-media-list

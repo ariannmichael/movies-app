@@ -79,11 +79,33 @@ export class TMDBService {
         params.certification_country = 'US'
       }
       if (filters.language) params.language = filters.language;
-      if (filters.userScore) params.vote_average_gte = filters.userScore;
-      if (filters.minUserVotes) params.vote_count_gte = filters.minUserVotes;
+      if (filters.userScore) params['vote_average.gte'] = filters.userScore;
+      if (filters.minUserVotes) params['vote_count.gte'] = filters.minUserVotes;
+      if (filters.runtime) params['with_runtime.gte'] = filters.runtime;
     }
 
     return this.http.get<SearchResponse>(`${this.baseUrl}/discover/movie`, { params });
+  }
+
+  discoverTV(page: number = 1, filters: FilterCriteria): Observable<SearchResponse> {
+    let params: any = {
+      api_key: this.apiKey,
+      page: page.toString()
+    };
+
+    if (filters) {
+      if (filters.genres.length) params.with_genres = filters.genres.join(',');
+      if (filters.certifications.length) {
+        params.certification = filters.certifications.join('|');
+        params.certification_country = 'US'
+      }
+      if (filters.language) params.language = filters.language;
+      if (filters.userScore) params['vote_average.gte'] = filters.userScore;
+      if (filters.minUserVotes) params['vote_count.gte'] = filters.minUserVotes;
+      if (filters.runtime) params['with_runtime.gte'] = filters.runtime;
+    }
+
+    return this.http.get<SearchResponse>(`${this.baseUrl}/discover/tv`, { params });
   }
   
 }

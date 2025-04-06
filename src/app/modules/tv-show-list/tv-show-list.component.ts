@@ -6,7 +6,7 @@ import { MediaListComponent } from '../../shared/media-list/media-list.component
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MovieCardComponent } from '../../shared/movie-card/movie-card.component';
-import { FilterComponent } from '../../shared/filter/filter.component';
+import { FilterComponent, FilterCriteria } from '../../shared/filter/filter.component';
 
 
 @Component({
@@ -54,5 +54,14 @@ export class TvShowListComponent {
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex + 1;
     this.loadTvShows();
+  }
+
+  onFilterChange(filterCriteria: FilterCriteria) {
+    this.tmdbService.discoverTV(this.currentPage, filterCriteria).subscribe({
+      next: (res) => {
+        this.tvShows.set(res.results);
+        this.totalTvShows.set(res.total_results);
+      }
+    });
   }
 }
