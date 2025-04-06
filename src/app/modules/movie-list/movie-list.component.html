@@ -1,8 +1,15 @@
-<app-media-list
-  [mediaItems]="movies()"
-  [totalItems]="totalMovies()"
-  [pageSize]="pageSize"
-  [currentPage]="currentPage"
-  [isLoading]="isLoading()"
-  (pageChange)="onPageChange($event)">
-</app-media-list> 
+<div class="movie-container">
+  <div class="filter-column">
+    <app-filter></app-filter>
+  </div>
+  <div class="list-column">
+    <app-media-list
+      [mediaItems]="movies()"
+      [totalItems]="totalMovies()"
+      [pageSize]="pageSize"
+      [currentPage]="currentPage"
+      [isLoading]="isLoading()"
+      (pageChange)="onPageChange($event)">
+    </app-media-list>
+  </div>
+</div> 

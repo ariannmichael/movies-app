@@ -1,1 +1,70 @@
-<p>filter works!</p>
+<div class="filter-container">
+  <!-- Genres -->
+  <div class="filter-section">
+    <h3>Genres</h3>
+    <div class="genre-chips">
+      <mat-chip-listbox multiple>
+        <mat-chip-option *ngFor="let genre of genres">{{ genre }}</mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+  </div>
+
+  <!-- Certification -->
+  <div class="filter-section">
+    <h3>Certification</h3>
+    <div class="certification-chips">
+      <mat-chip-listbox multiple>
+        <mat-chip-option *ngFor="let cert of certifications">{{ cert }}</mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+  </div>
+
+  <!-- Language -->
+  <div class="filter-section">
+    <h3>Language <mat-icon>help</mat-icon></h3>
+    <mat-form-field appearance="fill">
+      <mat-select placeholder="None Selected">
+        <mat-option *ngFor="let lang of languages" [value]="lang.code">
+          {{ lang.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- User Score -->
+  <div class="filter-section">
+    <h3>User Score</h3>
+    <mat-slider min="0" max="10" step="0.1" discrete>
+      <input matSliderThumb>
+    </mat-slider>
+  </div>
+
+  <!-- Minimum User Votes -->
+  <div class="filter-section">
+    <h3>Minimum User Votes</h3>
+    <mat-slider min="0" max="500" step="10" discrete>
+      <input matSliderThumb>
+    </mat-slider>
+  </div>
+
+  <!-- Runtime -->
+  <div class="filter-section">
+    <h3>Runtime</h3>
+    <mat-slider min="0" max="360" step="15" discrete>
+      <input matSliderThumb>
+    </mat-slider>
+  </div>
+
+  <!-- Keywords -->
+  <div class="filter-section">
+    <h3>Keywords</h3>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Filter by keywords...">
+    </mat-form-field>
+  </div>
+
+  <!-- Search Button -->
+  <button mat-flat-button color="primary" class="search-button">
+    Search
+  </button>
+</div> 

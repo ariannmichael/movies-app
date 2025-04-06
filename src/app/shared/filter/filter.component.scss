@@ -1,0 +1,83 @@
+.filter-container {
+  // background: #1f1f1f;
+  border-radius: 8px;
+  padding: 20px;
+  color: #ffffff;
+}
+
+.filter-section {
+  margin-bottom: 24px;
+
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-mdc-chip-set {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .mat-mdc-form-field {
+    width: 100%;
+
+    .mat-mdc-text-field-wrapper {
+      background: #b6b6b6;
+      border-radius: 0.5rem !important;
+    }
+
+    .mat-mdc-form-field-flex {
+      background: #b6b6b6;
+      border-radius: 0.5rem !important;
+    }
+
+    input, .mat-select-value, .mat-select-arrow {
+      color: #ffffff;
+    }
+  }
+
+  .mat-mdc-slider {
+    width: 100%;
+    margin: 8px 0;
+    min-width: 100% !important;
+
+    .mdc-slider__track--active {
+      background: #004a77;
+    }
+  }
+}
+
+
+.genre-chips, .certification-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.search-button {
+  width: 100%;
+  margin-top: 16px;
+  background: #004a77;
+  color: white;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background: #005d94;
+  }
+} 

@@ -6,11 +6,20 @@ import { MediaListComponent } from '../../shared/media-list/media-list.component
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MovieCardComponent } from '../../shared/movie-card/movie-card.component';
+import { FilterComponent } from '../../shared/filter/filter.component';
+
 
 @Component({
   selector: 'app-tv-show-list',
   standalone: true,
-  imports: [CommonModule, MediaListComponent, MovieCardComponent, MatPaginatorModule, MatProgressSpinnerModule],
+  imports: [
+    CommonModule, 
+    MediaListComponent, 
+    MovieCardComponent, 
+    MatPaginatorModule, 
+    MatProgressSpinnerModule,
+    FilterComponent
+  ],
   templateUrl: './tv-show-list.component.html',
   styleUrl: './tv-show-list.component.scss'
 })

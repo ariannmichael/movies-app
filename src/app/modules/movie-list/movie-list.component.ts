@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { MediaListComponent } from '../../shared/media-list/media-list.component';
 import { PageEvent } from '@angular/material/paginator';
 import { Movie } from '../../core/models/search.model';
+import { FilterComponent } from '../../shared/filter/filter.component';
+
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [CommonModule, MediaListComponent],
+  imports: [CommonModule, MediaListComponent, FilterComponent],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.scss'
 })
@@ -25,7 +27,7 @@ export class MovieListComponent {
 
   loadMovies() {
     this.isLoading.set(true);
-    this.tmdbService.getPopularMovies(this.currentPage).subscribe({
+    this.tmdbService.getTrendingMovies(this.currentPage).subscribe({
       next: (res) => {
         this.movies.set(res.results);
         this.totalMovies.set(res.total_results);

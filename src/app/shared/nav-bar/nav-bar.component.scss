@@ -9,6 +9,7 @@
    align-items: center;
    justify-content: space-between;
    padding: 0.4rem 1.625rem;
+   height: 4rem;
  
    &__logo {
     font-size: 1.875rem;
@@ -43,6 +44,7 @@
     p {
      font-size: 1.4rem;
      margin-left: 0.2rem;
+     width: 6.3rem;
     }
  
     &:hover {
@@ -52,9 +54,9 @@
 
    &__search {
     height: 3.4rem;
-    background-color: #b6b6b6;
+    background-color: #b6b6b6 !important;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 0.5rem;
+    border-radius: 0.5rem !important;
     margin-left: 4.2rem;
    }
   }
