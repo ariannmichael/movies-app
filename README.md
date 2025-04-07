@@ -2,6 +2,10 @@
 
 A modern, responsive web application for browsing movies and TV shows, built with Angular and powered by the TMDB API.
 
+## Live Demo
+
+Check out the live demo of the application at: [https://ariannmichael.github.io/movies-app/](https://ariannmichael.github.io/movies-app/)
+
 ## Features
 
 - 🎬 Browse trending movies and TV shows
@@ -56,6 +60,30 @@ ng serve
 ```
 
 5. Open your browser and navigate to `http://localhost:4200`
+
+## Testing
+
+The project includes comprehensive unit tests for all components and services:
+
+### Running Tests
+
+```bash
+# Run all tests
+ng test
+
+# Run tests with coverage
+ng test --code-coverage
+```
+
+### Test Coverage
+
+The tests cover:
+- Component initialization and rendering
+- Service methods and API calls
+- Pipe transformations
+- Responsive behavior
+- User interactions
+- Error handling
 
 ## Project Structure
 
