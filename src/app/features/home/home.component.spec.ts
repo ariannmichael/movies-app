@@ -139,7 +139,7 @@ describe('HomeComponent', () => {
     component.startAutoRotate();
     expect(component.currentIndex()).toBe(0);
     
-    tick(2500); // ROTATION_INTERVAL is 2000ms
+    tick(2500); // ROTATION_INTERVAL is 2500ms
     expect(component.currentIndex()).toBe(1);
     
     tick(2500);
