@@ -1,0 +1,80 @@
+<div class="details-container" *ngIf="show() as show">
+  <div class="backdrop" [style.background-image]="'linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url(https://image.tmdb.org/t/p/original' + show.backdrop_path + ')'">
+    <div class="content">
+      <div class="poster">
+        <img [src]="'https://image.tmdb.org/t/p/w500' + show.poster_path" [alt]="show.name">
+      </div>
+      <div class="info">
+        <h1>{{ show.name }} <span class="year">({{ getYear(show.first_air_date) }})</span></h1>
+        <p class="tagline">{{ show.tagline }}</p>
+        <div class="genres">
+          <span *ngFor="let genre of show.genres">{{ genre.name }}</span>
+        </div>
+        
+        <div class="score-container">
+          <div class="score">
+            <div class="score-circle">
+              {{ show.vote_average * 10 | number:'1.0-0' }}°
+            </div>
+            <span>User Score</span>
+          </div>
+        </div>
+
+        <div class="overview">
+          <h3>Overview</h3>
+          <p>{{ show.overview }}</p>
+        </div>
+
+        <div class="details-grid">
+          <div class="creator">
+            <h3>Creator/Story</h3>
+            <p>{{ getCreators(show) }}</p>
+          </div>
+          <div class="status">
+            <h3>Status</h3>
+            <p>{{ show.status }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="credits-section">
+    <div class="credits-content">
+      <div class="cast">
+        <h2>Top Cast</h2>
+        <div class="cast-grid">
+          <div class="cast-card" *ngFor="let actor of getTopCast(show)">
+            <div class="profile-image">
+              <img 
+                [src]="actor.profile_path ? 'https://image.tmdb.org/t/p/w185' + actor.profile_path : 'assets/images/no-profile.png'"
+                [alt]="actor.name">
+            </div>
+            <div class="cast-info">
+              <h3>{{ actor.name }}</h3>
+              <p>{{ actor.character }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="crew">
+        <h2>Featured Crew</h2>
+        <div class="crew-grid">
+          <div class="crew-card" *ngFor="let person of getFeaturedCrew(show)">
+            <div class="profile-image">
+              <img 
+                [src]="person.profile_path ? 'https://image.tmdb.org/t/p/w185' + person.profile_path : 'assets/images/no-profile.png'"
+                [alt]="person.name">
+            </div>
+            <div class="crew-info">
+              <h3>{{ person.name }}</h3>
+              <p>{{ person.job }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-spinner *ngIf="isLoading()" class="spinner"></mat-spinner> 

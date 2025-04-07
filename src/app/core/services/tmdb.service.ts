@@ -6,6 +6,48 @@ import { SearchResponse } from '../models/search.model';
 import { DetailResponse } from '../models/detail.model';
 import { FilterCriteria } from '../../shared/filter/filter.component';
 
+export interface TVShowDetails {
+  id: number;
+  name: string;
+  overview: string;
+  first_air_date: string;
+  poster_path: string;
+  backdrop_path: string;
+  vote_average: number;
+  tagline: string;
+  status: string;
+  genres: { id: number; name: string; }[];
+  created_by: { id: number; name: string; }[];
+}
+
+export interface MovieDetails {
+  id: number;
+  title: string;
+  overview: string;
+  release_date: string;
+  poster_path: string;
+  backdrop_path: string;
+  vote_average: number;
+  tagline: string;
+  status: string;
+  genres: { id: number; name: string; }[];
+  credits: {
+    cast: {
+      id: number;
+      name: string;
+      character: string;
+      profile_path: string | null;
+    }[];
+    crew: {
+      id: number;
+      name: string;
+      job: string;
+      department: string;
+      profile_path: string | null;
+    }[];
+  };
+}
+
 @Injectable({ providedIn: 'root' })
 export class TMDBService {
   private apiKey = environment.TMDBApiKey;
@@ -33,9 +75,12 @@ export class TMDBService {
     });
   }
 
-  getMovieDetails(id: string): Observable<DetailResponse> {
-    return this.http.get<DetailResponse>(`${this.baseUrl}/movie/${id}`, {
-      params: { api_key: this.apiKey }
+  getMovieDetails(id: string): Observable<MovieDetails> {
+    return this.http.get<MovieDetails>(`${this.baseUrl}/movie/${id}`, {
+      params: { 
+        api_key: this.apiKey,
+        append_to_response: 'credits'
+      }
     });
   }
 
@@ -121,5 +166,8 @@ export class TMDBService {
 
     return this.http.get<SearchResponse>(`${this.baseUrl}/discover/tv`, { params });
   }
-  
+
+  getTVShowDetails(id: string): Observable<TVShowDetails> {
+    return this.http.get<TVShowDetails>(`${this.baseUrl}/tv/${id}?api_key=${this.apiKey}`);
+  }
 }
