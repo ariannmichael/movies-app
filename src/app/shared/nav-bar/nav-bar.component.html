@@ -11,9 +11,11 @@
         <p>TV Shows</p>
       </a>
       <mat-form-field appearance="outline" class="header__items__search">
-        <mat-icon matSuffix>search</mat-icon>
+        <button mat-icon-button matSuffix (click)="onSearch()">
+          <mat-icon>search</mat-icon>
+        </button>
         <mat-label>Search Name</mat-label>
-        <input matInput [(ngModel)]="query" (keyup.enter)="onSearch()">
+        <input matInput [(ngModel)]="query" (keyup.enter)="onSearch(); closeMenu()">
       </mat-form-field>
     </div>
     <button class="header__items__menu-button" (click)="toggleMenu()">
@@ -28,7 +30,9 @@
       <p>TV Shows</p>
     </a>
     <mat-form-field appearance="outline" class="header__mobile-menu__search">
-      <mat-icon matSuffix>search</mat-icon>
+      <button mat-icon-button matSuffix (click)="onSearch(); closeMenu()">
+        <mat-icon>search</mat-icon>
+      </button>
       <mat-label>Search Name</mat-label>
       <input matInput [(ngModel)]="query" (keyup.enter)="onSearch(); closeMenu()">
     </mat-form-field>

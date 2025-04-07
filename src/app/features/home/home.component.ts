@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   featuredItem = signal<MediaItem | null>(null);
   currentIndex = signal(0);
   private autoRotateInterval: any;
-  private readonly ROTATION_INTERVAL = 2000;
+  private readonly ROTATION_INTERVAL = 2500;
 
   constructor(private tmdbService: TMDBService) {
     this.loadTrendingMovies();
