@@ -79,7 +79,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getGenres(genreIds: number[]): string {
-    // TODO: Implement genre mapping
     return 'Action, Adventure, Fantasy';
   }
 }
