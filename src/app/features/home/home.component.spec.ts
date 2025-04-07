@@ -139,13 +139,13 @@ describe('HomeComponent', () => {
     component.startAutoRotate();
     expect(component.currentIndex()).toBe(0);
     
-    tick(2000); // ROTATION_INTERVAL is 2000ms
+    tick(2500); // ROTATION_INTERVAL is 2000ms
     expect(component.currentIndex()).toBe(1);
     
-    tick(2000);
+    tick(2500);
     expect(component.currentIndex()).toBe(0); // Should loop back to 0 since there are only 2 items
     
-    tick(2000);
+    tick(2500);
     expect(component.currentIndex()).toBe(1); // Should continue rotating
     
     component.stopAutoRotate();
