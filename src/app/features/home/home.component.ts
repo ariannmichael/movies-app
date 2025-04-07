@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieCardComponent } from '../../shared/movie-card/movie-card.component';
 import { TMDBService } from '../../core/services/tmdb.service';
@@ -13,15 +13,40 @@ import { RouterModule } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
   trendingMovies = signal<MediaItem[]>([]);
   popularMovies = signal<MediaItem[]>([]);
   featuredItem = signal<MediaItem | null>(null);
   currentIndex = signal(0);
+  private autoRotateInterval: any;
+  private readonly ROTATION_INTERVAL = 2000;
 
   constructor(private tmdbService: TMDBService) {
     this.loadTrendingMovies();
     this.loadPopularMovies();
+  }
+
+  ngOnInit() {
+    this.startAutoRotate();
+  }
+
+  ngOnDestroy() {
+    this.stopAutoRotate();
+  }
+
+  startAutoRotate() {
+    this.stopAutoRotate(); // Clear any existing interval
+    this.autoRotateInterval = setInterval(() => {
+      const nextIndex = (this.currentIndex() + 1) % 6; // Loop through 6 items
+      this.changeFeatured(nextIndex);
+    }, this.ROTATION_INTERVAL);
+  }
+
+  stopAutoRotate() {
+    if (this.autoRotateInterval) {
+      clearInterval(this.autoRotateInterval);
+      this.autoRotateInterval = null;
+    }
   }
 
   loadTrendingMovies() {
