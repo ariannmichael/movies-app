@@ -84,3 +84,17 @@
     }
   }
 } 
+
+:ng-deep .mat-mdc-paginator {
+  background-color: var(--light-gray);
+  color: var(--text-color);
+}
+
+::ng-deep .mat-mdc-icon-button {
+  color: var(--text-color);
+}
+
+::ng-deep .mat-mdc-paginator-container {
+  background-color: var(--light-gray);
+  color: var(--text-color);
+}
