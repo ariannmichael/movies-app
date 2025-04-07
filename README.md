@@ -1,27 +1,117 @@
-# MoviesApp
+# Movies App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+A modern, responsive web application for browsing movies and TV shows, built with Angular and powered by the TMDB API.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- 🎬 Browse trending movies and TV shows
+- 📺 Detailed information for movies and TV shows
+- 🔍 Advanced search functionality
+- 🎯 Filter movies and TV shows by:
+  - Genres
+  - Certifications
+  - Language
+  - User Score
+  - Runtime
+- 📱 Fully responsive design for all screen sizes
+- 🎨 Modern UI with smooth animations
+- 🌙 Dark theme support
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 17
+- TypeScript
+- SCSS
+- Angular Material
+- TMDB API
 
-## Build
+## Getting Started
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Prerequisites
 
-## Running unit tests
+- Node.js (v16 or higher)
+- npm (v7 or higher)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Installation
 
-## Running end-to-end tests
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/movies-app.git
+cd movies-app
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Install dependencies:
+```bash
+npm install
+```
 
-## Further help
+3. Create a `.env` file in the root directory and add your TMDB API key:
+```
+TMDB_API_KEY=your_api_key_here
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Start the development server:
+```bash
+ng serve
+```
+
+5. Open your browser and navigate to `http://localhost:4200`
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── core/
+│   │   ├── models/         # TypeScript interfaces
+│   │   ├── services/       # Core services (TMDB, etc.)
+│   │   └── utils/          # Utility functions
+│   ├── features/
+│   │   ├── home/           # Home page component
+│   │   ├── movie-details/  # Movie details page
+│   │   ├── movie-list/     # Movies listing page
+│   │   ├── tv-show-details/# TV show details page
+│   │   ├── tv-show-list/   # TV shows listing page
+│   │   └── search/         # Search page
+│   └── shared/
+│       ├── components/     # Reusable components
+│       └── pipes/          # Custom pipes
+├── assets/
+│   ├── images/            # Static images
+│   └── styles/            # Global styles
+└── environments/          # Environment configurations
+```
+
+## Responsive Design
+
+The application is built with a mobile-first approach and includes responsive features:
+
+- Fluid typography using `clamp()`
+- Responsive grid layouts
+- Mobile-optimized navigation
+- Touch-friendly interfaces
+- Adaptive component layouts
+
+### Breakpoints
+
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [The Movie Database (TMDB)](https://www.themoviedb.org/) for providing the API
+- [Angular](https://angular.io/) for the amazing framework
+- [Angular Material](https://material.angular.io/) for UI components
