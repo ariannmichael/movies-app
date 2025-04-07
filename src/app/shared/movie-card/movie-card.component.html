@@ -1,11 +1,14 @@
-<mat-card class="movie-card">
-  <div class="poster-container">
-    <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
-    <div class="rating-badge">{{ movie.vote_average | number: '1.0-0' }}</div>
+<div class="movie-card" [routerLink]="['/movie', item.id]">
+  <img 
+    [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path" 
+    [alt]="item.title || item.name"
+    class="poster"
+  >
+  <div class="info">
+    <h3>{{ item.title || item.name }}</h3>
+    <div class="rating">
+      <span class="score">{{ item.vote_average | number:'1.1-1' }}</span>
+      <span class="year">{{ getYear() }}</span>
+    </div>
   </div>
-
-  <mat-card-content>
-    <h3>{{ (movie.title || movie.name) | truncate:25 }}</h3>
-    <p>{{ movie.release_date || movie.first_air_date | date: 'MMM dd, y' }}</p>
-  </mat-card-content>
-</mat-card>
+</div>

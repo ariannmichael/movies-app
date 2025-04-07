@@ -1,16 +1,20 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
 import { MediaItem } from '../../core/models/search.model';
-import { TruncatePipe } from '../pipes/truncate.pipe';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
   standalone: true,
-  imports: [CommonModule, MatCardModule, TruncatePipe],
+  imports: [CommonModule, RouterModule],
   templateUrl: './movie-card.component.html',
-  styleUrl: './movie-card.component.scss'
+  styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent {
-  @Input() movie!: MediaItem;
+  @Input() item!: MediaItem;
+
+  getYear(): string {
+    const date = this.item.release_date || this.item.first_air_date;
+    return date ? new Date(date).getFullYear().toString() : '';
+  }
 }

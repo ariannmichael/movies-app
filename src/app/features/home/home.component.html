@@ -1,8 +1,49 @@
-<!-- <input [(ngModel)]="query" placeholder="Search for a movie" />
-<button (click)="search()">Search</button> -->
-<div *ngIf="trendingMovies().length">
-  <app-trending-carousel [movies]="trendingMovies()"></app-trending-carousel>
-  <!-- <a [routerLink]="['/movie', movie.id]">
-    <h3>{{ movie.title }}</h3>
-  </a> -->
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero-section" [style.background-image]="'linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url(https://image.tmdb.org/t/p/original' + featuredItem()?.backdrop_path + ')'">
+    <div class="hero-content">
+      <div class="hero-poster">
+        <img [src]="'https://image.tmdb.org/t/p/w500' + featuredItem()?.poster_path" [alt]="featuredItem()?.title || featuredItem()?.name">
+      </div>
+      <div class="hero-info">
+        <h1>{{ featuredItem()?.title || featuredItem()?.name }}</h1>
+        <p class="genres">{{ getGenres(featuredItem()?.genre_ids || []) }}</p>
+        <p class="overview">{{ featuredItem()?.overview }}</p>
+      </div>
+    </div>
+    <div class="hero-indicators">
+      <span *ngFor="let _ of [1,2,3,4,5,6]; let i = index" 
+            [class.active]="i === currentIndex()" 
+            (click)="changeFeatured(i)">
+      </span>
+    </div>
+  </section>
+
+  <!-- Trending Section -->
+  <section class="media-section">
+    <div class="section-header">
+      <h2>Trending</h2>
+      <a [routerLink]="['/movies']" class="view-all">View All</a>
+    </div>
+    <div class="media-grid">
+      <app-movie-card 
+        *ngFor="let item of trendingMovies().slice(0, 5)" 
+        [item]="item">
+      </app-movie-card>
+    </div>
+  </section>
+
+  <!-- Popular Section -->
+  <section class="media-section">
+    <div class="section-header">
+      <h2>Popular</h2>
+      <a [routerLink]="['/movies']" class="view-all">View All</a>
+    </div>
+    <div class="media-grid">
+      <app-movie-card 
+        *ngFor="let item of popularMovies().slice(0, 5)" 
+        [item]="item">
+      </app-movie-card>
+    </div>
+  </section>
 </div>
