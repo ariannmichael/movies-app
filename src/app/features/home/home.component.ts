@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   stopAutoRotate() {
     if (this.autoRotateInterval) {
       clearInterval(this.autoRotateInterval);
-      this.autoRotateInterval = null;
     }
   }
 
@@ -53,7 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.tmdbService.getTrendingMovies().subscribe({
       next: (res) => {
         this.trendingMovies.set(res.results);
-        if (!this.featuredItem()) {
+        if (res.results.length > 0) {
           this.featuredItem.set(res.results[0]);
         }
       },
@@ -79,6 +78,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getGenres(genreIds: number[]): string {
-    return 'Action, Adventure, Fantasy';
+    // Add your genre mapping logic here
+    return '';
+  }
+
+  getMediaType(item: MediaItem): string {
+    return item.name ? 'tv' : 'movie';
+  }
+
+  getDetailsLink(item: MediaItem): string[] {
+    return ['/' + this.getMediaType(item), item.id.toString()];
   }
 }

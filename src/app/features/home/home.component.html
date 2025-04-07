@@ -3,7 +3,9 @@
   <section class="hero-section" 
     [style.background-image]="'linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url(https://image.tmdb.org/t/p/original' + featuredItem()?.backdrop_path + ')'"
     (mouseenter)="stopAutoRotate()"
-    (mouseleave)="startAutoRotate()">
+    (mouseleave)="startAutoRotate()"
+    [routerLink]="featuredItem() ? getDetailsLink(featuredItem()!) : []"
+    [class.clickable]="!!featuredItem()">
     <div class="hero-content">
       <div class="hero-poster">
         <img [src]="'https://image.tmdb.org/t/p/w500' + featuredItem()?.poster_path" [alt]="featuredItem()?.title || featuredItem()?.name">
@@ -17,7 +19,7 @@
     <div class="hero-indicators">
       <span *ngFor="let _ of [1,2,3,4,5,6]; let i = index" 
             [class.active]="i === currentIndex()" 
-            (click)="changeFeatured(i)">
+            (click)="changeFeatured(i); $event.stopPropagation()">
       </span>
     </div>
   </section>

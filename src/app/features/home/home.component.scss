@@ -4,14 +4,34 @@
 
 .hero-section {
   position: relative;
-  height: 600px;
+  min-height: 60vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  padding: 40px;
   display: flex;
   align-items: center;
-  padding: 0 40px;
   margin-bottom: 40px;
+
+  &.clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.01);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.1);
+        pointer-events: none;
+      }
+    }
+  }
 }
 
 .hero-content {
