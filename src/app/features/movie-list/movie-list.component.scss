@@ -1,20 +1,86 @@
 .movie-container {
   display: flex;
   min-height: calc(100vh - 80px);
-  padding: 20px;
-  gap: 20px;
+  padding: clamp(1rem, 2vw, 20px);
+  gap: clamp(1rem, 2vw, 20px);
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .filter-column {
-  flex: 0 0 300px;
-  position: sticky;
-  top: 20px;
-  height: fit-content;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+  max-height: none;
+  overflow-y: visible;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    flex: 0 0 300px;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
 }
 
 .list-column {
   flex: 1;
-  min-width: 0; /* Prevents flex item from overflowing */
+  min-width: 0;
+  width: 100%;
+}
+
+.movie-list {
+  padding: clamp(1rem, 3vw, 2rem);
+  background-color: var(--light-gray);
+  min-height: 100vh;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+
+    &__title {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    &__filters {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(150px, 20vw, 200px), 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+    padding: clamp(0.5rem, 1.5vw, 1rem);
+
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
 } 
