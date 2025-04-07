@@ -14,7 +14,23 @@
         <mat-icon matSuffix>search</mat-icon>
         <mat-label>Search Name</mat-label>
         <input matInput [(ngModel)]="query" (keyup.enter)="onSearch()">
-       </mat-form-field>
+      </mat-form-field>
     </div>
+    <button class="header__items__menu-button" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div class="header__mobile-menu" [class.active]="isMenuOpen">
+    <a [routerLink]="[ '/movies' ]" class="header__mobile-menu__link" (click)="closeMenu()">
+      <p>Movies</p>
+    </a>
+    <a [routerLink]="[ '/tv-shows' ]" class="header__mobile-menu__link" (click)="closeMenu()">
+      <p>TV Shows</p>
+    </a>
+    <mat-form-field appearance="outline" class="header__mobile-menu__search">
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-label>Search Name</mat-label>
+      <input matInput [(ngModel)]="query" (keyup.enter)="onSearch(); closeMenu()">
+    </mat-form-field>
   </div>
 </header>
