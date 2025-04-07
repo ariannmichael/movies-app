@@ -1,11 +1,11 @@
-<div class="movie-card" [routerLink]="['/movie', item.id]">
+<div class="movie-card" [routerLink]="['/' + getMediaType(), item.id]">
   <img 
     [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path" 
-    [alt]="item.title || item.name"
+    [alt]="getTitle()"
     class="poster"
   >
   <div class="info">
-    <h3>{{ item.title || item.name }}</h3>
+    <h3>{{ getTitle() }}</h3>
     <div class="rating">
       <span class="score">{{ item.vote_average | number:'1.1-1' }}</span>
       <span class="year">{{ getYear() }}</span>

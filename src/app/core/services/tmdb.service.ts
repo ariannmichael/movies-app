@@ -18,6 +18,21 @@ export interface TVShowDetails {
   status: string;
   genres: { id: number; name: string; }[];
   created_by: { id: number; name: string; }[];
+  credits: {
+    cast: {
+      id: number;
+      name: string;
+      character: string;
+      profile_path: string | null;
+    }[];
+    crew: {
+      id: number;
+      name: string;
+      job: string;
+      department: string;
+      profile_path: string | null;
+    }[];
+  };
 }
 
 export interface MovieDetails {
@@ -168,6 +183,11 @@ export class TMDBService {
   }
 
   getTVShowDetails(id: string): Observable<TVShowDetails> {
-    return this.http.get<TVShowDetails>(`${this.baseUrl}/tv/${id}?api_key=${this.apiKey}`);
+    return this.http.get<TVShowDetails>(`${this.baseUrl}/tv/${id}`, {
+      params: { 
+        api_key: this.apiKey,
+        append_to_response: 'credits'
+      }
+    });
   }
 }

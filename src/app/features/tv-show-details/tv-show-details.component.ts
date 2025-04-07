@@ -48,4 +48,17 @@ export class TvShowDetailsComponent {
     }
     return '';
   }
+
+  getTopCast(show: TVShowDetails) {
+    return show.credits?.cast?.slice(0, 6) || [];
+  }
+
+  getFeaturedCrew(show: TVShowDetails) {
+    if (!show.credits?.crew) return [];
+    
+    const importantRoles = ['Director', 'Producer', 'Executive Producer', 'Writer'];
+    return show.credits.crew
+      .filter((person: { job: string }) => importantRoles.includes(person.job))
+      .slice(0, 6);
+  }
 } 

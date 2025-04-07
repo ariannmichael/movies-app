@@ -17,4 +17,12 @@ export class MovieCardComponent {
     const date = this.item.release_date || this.item.first_air_date;
     return date ? new Date(date).getFullYear().toString() : '';
   }
+
+  getMediaType(): string {
+    return this.item.name ? 'tv' : 'movie';
+  }
+
+  getTitle(): string {
+    return this.item.title || this.item.name || '';
+  }
 }
