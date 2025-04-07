@@ -37,7 +37,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   startAutoRotate() {
     this.stopAutoRotate(); // Clear any existing interval
     this.autoRotateInterval = setInterval(() => {
-      const nextIndex = (this.currentIndex() + 1) % 6; // Loop through 6 items
+      const items = this.trendingMovies();
+      const nextIndex = (this.currentIndex() + 1) % items.length; // Loop through actual number of items
       this.changeFeatured(nextIndex);
     }, this.ROTATION_INTERVAL);
   }

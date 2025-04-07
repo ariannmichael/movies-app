@@ -39,7 +39,8 @@ export class MovieDetailsComponent {
   }
 
   getYear(date: string): string {
-    return date ? new Date(date).getFullYear().toString() : '';
+    if (!date) return '';
+    return date.split('-')[0];
   }
 
   getDirectors(movie: MovieDetails): string {

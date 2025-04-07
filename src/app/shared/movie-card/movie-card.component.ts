@@ -15,7 +15,8 @@ export class MovieCardComponent {
 
   getYear(): string {
     const date = this.item.release_date || this.item.first_air_date;
-    return date ? new Date(date).getFullYear().toString() : '';
+    if (!date) return '';
+    return date.split('-')[0];
   }
 
   getMediaType(): string {
